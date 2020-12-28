@@ -116,11 +116,11 @@ class Scene3d : Node3d {
 bool visit(Node3d node, bool delegate(Node3d node) visitor) {
     if (!node.visible)
         return false;
-    bool res = visitor(node);
-    if (res)
+    bool res = false;
+    if (visitor(node))
         return true;
     foreach(child; node.children) {
-        bool res = visit(child, visitor);
+        res = visit(child, visitor);
         if (res)
             return true;
     }
